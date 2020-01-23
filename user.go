@@ -4,7 +4,7 @@ import (
     "fmt"
     "github.com/google/uuid"
     "net/http"
-    "text/template"
+    "html/template"
 )
 
 type User struct {

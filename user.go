@@ -16,7 +16,7 @@ type User struct {
 var loginForm = `
 <!doctype html>
 
-<form>
+<form method="post">
 <label>Username</label>
 <input type="text" name="username"><br>
 <input type="password" name="password"><br>

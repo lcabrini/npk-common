@@ -15,4 +15,5 @@ var BaseTemplate = `
 </main>
 </body>
 </html>
+{{end}}
 `

@@ -18,7 +18,7 @@ var loginForm = `
 
 {{define "main"}}
 <div class="container">
-<div class="container columns">
+<div class="container columns is-vcentered">
 <div class="card column is-half is-offset-one-quarter">
 <header class="card-header">
 <p class="card-header-title">Login</p>

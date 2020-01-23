@@ -26,7 +26,7 @@ var loginForm = `
 <form method="post">
 <div class="field">
 <label class="label">Username</label>
-<div class="control has-icon-left">
+<div class="control has-icons-left">
 <input type="text" class="input" name="username" placeholder="username">
 <span class="icon is-small is-left">
 <i class="fa fa-user"></i>
@@ -34,7 +34,7 @@ var loginForm = `
 </div>
 <div class="field">
 <label class="label">Password</label>
-<div class="control has-icon-left">
+<div class="control has-icons-left">
 <input type="password" class="input" name="password" placeholder="password">
 <span class="icon is-small is-left">
 <i class="fa fa-lock"></i>

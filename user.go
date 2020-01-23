@@ -17,6 +17,7 @@ var loginForm = `
 {{template "base" .}}
 
 {{define "main"}}
+<div class="container">
 <div class="container columns">
 <div class="card column is-half is-offset-one-quarter">
 <header class="card-header">
@@ -46,6 +47,7 @@ var loginForm = `
 </div>
 </div>
 </form>
+</div>
 </div>
 </div>
 </div>

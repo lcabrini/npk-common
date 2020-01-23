@@ -17,12 +17,38 @@ var loginForm = `
 {{template "base" .}}
 
 {{define "main"}}
+<div class="container columns">
+<div class="card column is-half is-offset-one-quarter">
+<header class="card-header">
+<p class="card-header-title">Login</p>
+</header>
+<div class="card-content">
 <form method="post">
-<label>Username</label>
-<input type="text" name="username"><br>
-<input type="password" name="password"><br>
-<input type="submit" name="Login">
+<div class="field">
+<label class="label">Username</label>
+<div class="control has-icon-left">
+<input type="text" class="input" name="username" placeholder="username">
+<span class="icon is-small is-left">
+<i class="fa fa-user"></i>
+</span>
+</div>
+<div class="field">
+<label class="label">Password</label>
+<div class="control has-icon-left">
+<input type="password" class="input" name="password" placeholder="password">
+<span class="icon is-small is-left">
+<i class="fa fa-lock"></i>
+</span>
+</div>
+</div>
+<div class="field has-text-right">
+<button class="button is-success">Login</button>
+</div>
+</div>
 </form>
+</div>
+</div>
+</div>
 {{end}}
 `
 

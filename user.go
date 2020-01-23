@@ -14,20 +14,23 @@ type User struct {
 }
 
 var loginForm = `
-<!doctype html>
+{{template "base" .}}
 
+{{define "main"}}
 <form method="post">
 <label>Username</label>
 <input type="text" name="username"><br>
 <input type="password" name="password"><br>
 <input type="submit" name="Login">
 </form>
+{{end}}
 `
 
 func login(w http.ResponseWriter, r *http.Request) {
     switch r.Method {
     case "GET":
-        t, _ := template.New("loginForm").Parse(loginForm)
+        t, _ := template.New("base").Parse(BaseTemplate)
+        t.New("loginForm").Parse(loginForm)
         t.ExecuteTemplate(w, "loginForm", nil)
 
     case "POST":

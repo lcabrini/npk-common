@@ -1,4 +1,9 @@
-\set sa_id 6c6cc02e-cca6-451d-9928-1f4d898c838e
+drop function if exists sa_id();
+create function sa_id() returns uuid as $$
+begin
+    return '6c6cc02e-cca6-451d-9928-1f4d898c838e';
+end;
+$$ language plpgsql;
 
 drop type if exists user_status cascade;
 create type user_status as enum(
@@ -20,7 +25,7 @@ create table users(
 );
 
 insert into users(id, username, password) values(
-    :'sa_id',
+    sa_id(),
     'sa',
     '%npK-s3Kr3T%'
 );
@@ -28,7 +33,7 @@ insert into users(id, username, password) values(
 drop function if exists delete_user();
 create function delete_user() returns trigger as $$
 begin
-    if OLD.id = :'sa_id' then
+    if OLD.id = sa_id() then
         raise exception 'cannot delete the system administrator';
     else
         return old;

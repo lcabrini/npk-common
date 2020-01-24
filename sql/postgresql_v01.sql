@@ -1,4 +1,4 @@
-drop type if exists user_status;
+drop type if exists user_status cascade;
 create type user_status as enum(
     'new',
     'active',

@@ -20,37 +20,24 @@ var loginForm = `
 <section class="hero is-fullheight is-light is-bold">
 <div class="hero-body">
 <div class="container">
-<div class="container columns">
-<div class="card column is-half is-offset-one-quarter">
-<header class="card-header">
-<p class="card-header-title">Login</p>
-</header>
+<div class="columns is-centered">
+<article class="card is-rounded">
 <div class="card-content">
+<h1 class="title">Login</h1>
 <form method="post">
-<div class="field">
-<label class="label">Username</label>
-<div class="control has-icons-left">
+<p class="control has-icons-left">
 <input type="text" class="input" name="username" placeholder="username">
-<span class="icon is-small is-left">
 <i class="fa fa-user"></i>
-</span>
-</div>
-<div class="field">
-<label class="label">Password</label>
-<div class="control has-icons-left">
+</p>
+<p class="control has-icons-left">
 <input type="password" class="input" name="password" placeholder="password">
-<span class="icon is-small is-left">
 <i class="fa fa-lock"></i>
-</span>
-</div>
-</div>
-<div class="field has-text-right">
+</p>
+<p class="control has-text-right">
 <button class="button is-success">Login</button>
-</div>
-</div>
 </form>
 </div>
-</div>
+</article>
 </div>
 </div>
 </div>

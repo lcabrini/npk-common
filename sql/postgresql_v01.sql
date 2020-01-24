@@ -22,3 +22,18 @@ insert into users(id, username, password) values(
     'sa',
     '%npK-s3Kr3T%'
 );
+
+create function delete_user() returns trigger as $$
+begin
+    if OLD.id = '6c6cc02e-cca6-451d-9928-1f4d898c838e' then
+        raise exception 'cannot delete the system administrator';
+    else
+        return old;
+    end if;
+end;
+$$ language plpgsql;
+
+create trigger before_user_delete
+    before delete on users
+    for each row
+    execute function delete_user();

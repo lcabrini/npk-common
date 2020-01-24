@@ -1,3 +1,5 @@
+\set sa_id 6c6cc02e-cca6-451d-9928-1f4d898c838e
+
 drop type if exists user_status cascade;
 create type user_status as enum(
     'new',
@@ -18,14 +20,14 @@ create table users(
 );
 
 insert into users(id, username, password) values(
-    '6c6cc02e-cca6-451d-9928-1f4d898c838e',
+    :'sa_id',
     'sa',
     '%npK-s3Kr3T%'
 );
 
 create function delete_user() returns trigger as $$
 begin
-    if OLD.id = '6c6cc02e-cca6-451d-9928-1f4d898c838e' then
+    if OLD.id = :'sa_id' then
         raise exception 'cannot delete the system administrator';
     else
         return old;

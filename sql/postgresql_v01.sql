@@ -25,6 +25,7 @@ insert into users(id, username, password) values(
     '%npK-s3Kr3T%'
 );
 
+drop function if exists delete_user();
 create function delete_user() returns trigger as $$
 begin
     if OLD.id = :'sa_id' then

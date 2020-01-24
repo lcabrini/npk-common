@@ -11,6 +11,7 @@ create table users(
     id uuid,
     username varchar(50) not null,
     password varchar(50) not null,
+    created_at timestamp not null default current_timestamp,
     status user_status not null,
     primary key(id),
     unique(password)

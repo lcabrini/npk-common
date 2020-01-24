@@ -18,29 +18,42 @@ var loginForm = `
 
 {{define "main"}}
 <section class="hero is-fullheight is-light is-bold">
-<div class="hero-body">
-<div class="container">
-<div class="columns is-centered">
-<article class="card is-rounded">
-<div class="card-content">
-<h1 class="title">Login</h1>
-<form method="post">
-<p class="control has-icons-left">
-<input type="text" class="input" name="username" placeholder="username">
-<i class="fa fa-user"></i>
-</p>
-<p class="control has-icons-left">
-<input type="password" class="input" name="password" placeholder="password">
-<i class="fa fa-lock"></i>
-</p>
-<p class="control has-text-right">
-<button class="button is-success">Login</button>
-</form>
-</div>
-</article>
-</div>
-</div>
-</div>
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <article class="card is-rounded">
+          <div class="card-content">
+            <h1 class="title has-text-centered">Login</h1>
+            <form method="post">
+              <div class="field">
+                <p class="control has-icon has-icons-left">
+                  <input type="text" class="input" name="username" 
+                      placeholder="username">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icon has-icons-left">
+                  <input type="password" class="input" name="password" 
+                      placeholder="password">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-text-right">
+                  <button class="button is-success">Login</button>
+                </p>
+              </div>
+            </form>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
 </section>
 {{end}}
 `

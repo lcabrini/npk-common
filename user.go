@@ -66,9 +66,32 @@ func login(w http.ResponseWriter, r *http.Request) {
         t.ExecuteTemplate(w, "loginForm", nil)
 
     case "POST":
-        fmt.Fprintf(w, "login post")
+        un := r.Form.Get("username")
+        pw := r.Form.Get("password")
+        if authenticate(un, pw) {
+            fmt.Fprintf(w, "success")
+        } else {
+            fmt.Fprintf(w, "Failure")
+        }
 
     default:
         http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
     }
+}
+
+func authenticate(un string, pw string) bool {
+    var count int
+
+    sql := `
+    select count(*) 
+    from users 
+    where username = $1 and password = $2`
+
+    rows, err := db.Query(sql, un, pw)
+    if err != nil {
+        panic(err)
+    }
+    defer rows.Close()
+    rows.Scan(&count)
+    return count == 1
 }

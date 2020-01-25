@@ -3,6 +3,7 @@ package npk
 type DatabaseConfig struct {
     Host string
     Port string
+    SSLMode string
     Username string
     Password string
     Catalog string

@@ -33,7 +33,7 @@ insert into users(id, username, password) values(
 drop function if exists delete_user();
 create function delete_user() returns trigger as $$
 begin
-    if OLD.id = sa_id() then
+    if old.id = sa_id() then
         raise exception 'cannot delete the system administrator';
     else
         return old;

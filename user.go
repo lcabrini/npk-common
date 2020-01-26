@@ -77,7 +77,7 @@ func login(w http.ResponseWriter, r *http.Request) {
         if authenticate(un, pw) {
             fmt.Fprintf(w, "success")
         } else {
-            fmt.Fprintf(w, "Failure")
+            http.Redirect(w, r, "/login", 301)
         }
 
     default:

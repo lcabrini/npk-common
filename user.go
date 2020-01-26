@@ -1,7 +1,7 @@
 package npk
 
 import (
-    "fmt"
+    //"fmt"
     "log"
     "github.com/google/uuid"
     "net/http"
@@ -12,6 +12,24 @@ type User struct {
     Id       uuid.UUID
     Username string
     Password string
+}
+
+func UserIdByUsername(un string) uuid.UUID {
+    var uid uuid.UUID
+
+    sql := `
+    select id
+    from users
+    where username = $1`
+
+    rows, err := db.Query(sql, un)
+    if err != nil {
+        panic(err)
+    }
+    defer rows.Close()
+    rows.Next()
+    rows.Scan(&uid)
+    return uid
 }
 
 var loginForm = `
@@ -67,6 +85,7 @@ func login(w http.ResponseWriter, r *http.Request) {
         t.ExecuteTemplate(w, "loginForm", nil)
 
     case "POST":
+        session, _ := Store.Get(r, "npk-cookie")
         if err := r.ParseForm(); err != nil {
             log.Print("Failed to parse login form: %v", err)
             return
@@ -75,7 +94,11 @@ func login(w http.ResponseWriter, r *http.Request) {
         pw := r.FormValue("password")
         log.Printf("Username: %s, Password: %s", un, pw)
         if authenticate(un, pw) {
-            fmt.Fprintf(w, "success")
+            uid := UserIdByUsername(un)
+            session.Values["user"] = uid
+            session.Save(r, w)
+            http.Redirect(w, r, "/", 301)
+            //fmt.Fprintf(w, "success")
         } else {
             http.Redirect(w, r, "/login", 301)
         }

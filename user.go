@@ -98,6 +98,7 @@ func authenticate(un string, pw string) bool {
         panic(err)
     }
     defer rows.Close()
+    rows.Next()
     rows.Scan(&count)
     log.Printf("User count: %d", count)
     return count == 1

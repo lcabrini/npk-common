@@ -67,6 +67,10 @@ func login(w http.ResponseWriter, r *http.Request) {
         t.ExecuteTemplate(w, "loginForm", nil)
 
     case "POST":
+        if err := r.ParseForm(); err != nil {
+            log.Print("Failed to parse login form: %v", err)
+            return
+        }
         un := r.Form.Get("username")
         pw := r.Form.Get("password")
         log.Printf("Username: %s, Password: %s", un, pw)

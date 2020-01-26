@@ -97,7 +97,10 @@ func login(w http.ResponseWriter, r *http.Request) {
         if authenticate(un, pw) {
             uid := UserIdByUsername(un)
             session.Values["user"] = uid
-            session.Save(r, w)
+            err := session.Save(r, w)
+            if err != nil {
+                log.Printf("Session not saved: %v", err)
+            }
             http.Redirect(w, r, "/", 301)
             //fmt.Fprintf(w, "success")
         } else {

@@ -5,5 +5,6 @@ import (
 )
 
 func SetupRoutes(r *mux.Router) {
+    r.HandleFunc("/", dashboard)
     r.HandleFunc("/login", login)
 }

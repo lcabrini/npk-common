@@ -2,6 +2,7 @@ package npk
 
 import (
     "fmt"
+    "log"
     "github.com/google/uuid"
     "net/http"
     "html/template"
@@ -68,6 +69,7 @@ func login(w http.ResponseWriter, r *http.Request) {
     case "POST":
         un := r.Form.Get("username")
         pw := r.Form.Get("password")
+        log.Printf("Username: %s, Password: %s", un, pw)
         if authenticate(un, pw) {
             fmt.Fprintf(w, "success")
         } else {
@@ -93,5 +95,6 @@ func authenticate(un string, pw string) bool {
     }
     defer rows.Close()
     rows.Scan(&count)
+    log.Printf("User count: %d", count)
     return count == 1
 }

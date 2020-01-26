@@ -78,6 +78,8 @@ var loginForm = `
 `
 
 func login(w http.ResponseWriter, r *http.Request) {
+    session, _ := Store.Get(r, "npk-cookie")
+
     switch r.Method {
     case "GET":
         t, _ := template.New("base").Parse(BaseTemplate)
@@ -85,7 +87,6 @@ func login(w http.ResponseWriter, r *http.Request) {
         t.ExecuteTemplate(w, "loginForm", nil)
 
     case "POST":
-        session, _ := Store.Get(r, "npk-cookie")
         if err := r.ParseForm(); err != nil {
             log.Print("Failed to parse login form: %v", err)
             return

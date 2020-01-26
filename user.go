@@ -71,8 +71,8 @@ func login(w http.ResponseWriter, r *http.Request) {
             log.Print("Failed to parse login form: %v", err)
             return
         }
-        un := r.Form.Get("username")
-        pw := r.Form.Get("password")
+        un := r.FormValue("username")
+        pw := r.FormValue("password")
         log.Printf("Username: %s, Password: %s", un, pw)
         if authenticate(un, pw) {
             fmt.Fprintf(w, "success")

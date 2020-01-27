@@ -112,6 +112,12 @@ func login(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+func logout(w http.ResponseWriter, r *http.Request) {
+    session, _ := Store.Get(r, "npk-cookie")
+    session.Values["user"] = nil
+    http.Redirect(w, r, "/login", 301)
+}
+
 func authenticate(un string, pw string) bool {
     var count int
 

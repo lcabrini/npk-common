@@ -125,7 +125,7 @@ func authenticate(un string, pw string) bool {
     select count(*) 
     from users 
     where username = $1 and password = $2
-    and status = 'new' or status = 'active'`
+    and status in ('new', 'active')`
 
     rows, err := db.Query(sql, un, pw)
     if err != nil {

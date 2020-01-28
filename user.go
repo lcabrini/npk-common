@@ -118,6 +118,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
+    log.Printf("Test")
     session, err := Store.Get(r, "npk-cookie")
     if err != nil {
         log.Printf("Unable to get session: %v", err)

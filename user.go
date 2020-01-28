@@ -1,7 +1,7 @@
 package npk
 
 import (
-    //"fmt"
+    "fmt"
     "log"
     "github.com/google/uuid"
     "net/http"
@@ -118,8 +118,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
-    // XXX: testing
-    http.Error(w, "Foo!", http.StatusInternalServerError)
+    fmt.Fprintf(w, "Foo!")
     session, err := Store.Get(r, "npk-cookie")
     if err != nil {
         log.Printf("Unable to get session: %v", err)

@@ -14,7 +14,7 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), http.StatusInternalServerError)
     }
 
-    w.Header().Set("Cache-Control", "no-store, must-revalidate")
+    w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
     w.Header().Set("Expires", "0")
 
     uid := session.Values["user"]

@@ -117,7 +117,7 @@ func login(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func logout(w http.ResponseWriter, r *http.Request) {
+func whaddaheck(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "foobar!")
 }
 

@@ -115,6 +115,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 func logout(w http.ResponseWriter, r *http.Request) {
     session, _ := Store.Get(r, "npk-cookie")
     session.Values["user"] = nil
+    log.Printf("In logout, user: %v", session.Values["user"])
     session.Save(r, w)
     http.Redirect(w, r, "/login", 301)
 }

@@ -7,5 +7,5 @@ import (
 func SetupRoutes(r *mux.Router) {
     r.HandleFunc("/", dashboard)
     r.HandleFunc("/login", login)
-    r.HandleFunc("/foobar", whaddaheck)
+    r.HandleFunc("/logout", logout)
 }

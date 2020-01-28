@@ -1,7 +1,7 @@
 package npk
 
 import (
-    "fmt"
+    //"fmt"
     "log"
     "github.com/google/uuid"
     "net/http"
@@ -117,13 +117,8 @@ func login(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func whaddaheck(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "foobar!")
-}
-
-/*
 func logout(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Foo!")
+    //fmt.Fprintf(w, "Foo!")
     session, err := Store.Get(r, "npk-cookie")
     if err != nil {
         log.Printf("Unable to get session: %v", err)
@@ -141,7 +136,6 @@ func logout(w http.ResponseWriter, r *http.Request) {
     }
     http.Redirect(w, r, "/login", http.StatusFound)
 }
-*/
 
 func authenticate(un string, pw string) bool {
     var count int

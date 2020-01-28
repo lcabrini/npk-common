@@ -118,7 +118,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
-    log.Printf("Test")
+    // XXX: testing
+    http.Error(w, "Foo!", http.StatusInternalServerError)
     session, err := Store.Get(r, "npk-cookie")
     if err != nil {
         log.Printf("Unable to get session: %v", err)

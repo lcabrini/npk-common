@@ -117,6 +117,7 @@ func logout(w http.ResponseWriter, r *http.Request) {
     session.Values["user"] = nil
     log.Printf("In logout, user: %v", session.Values["user"])
     session.Save(r, w)
+    log.Printf("In logout, after save, user: %v", session.Values["user"])
     http.Redirect(w, r, "/login", 301)
 }
 

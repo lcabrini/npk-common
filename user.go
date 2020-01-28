@@ -109,7 +109,7 @@ func login(w http.ResponseWriter, r *http.Request) {
             http.Redirect(w, r, "/", 301)
             //fmt.Fprintf(w, "success")
         } else {
-            http.Redirect(w, r, "/login", 301)
+            http.Redirect(w, r, "/login", http.StatusFound)
         }
 
     default:
@@ -130,11 +130,12 @@ func logout(w http.ResponseWriter, r *http.Request) {
     }
     session.Options.MaxAge = -1
     //session.Values["user"] = nil
-    if err := session.Save(r, w); err != nil {
+    err = session.Save(r, w)
+    if err != nil {
         log.Printf("Session not saved: %v", err)
         http.Error(w, err.Error(), http.StatusInternalServerError)
     }
-    http.Redirect(w, r, "/login", 301)
+    http.Redirect(w, r, "/login", http.StatusFound)
 }
 
 func authenticate(un string, pw string) bool {

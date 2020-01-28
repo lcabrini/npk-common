@@ -118,13 +118,18 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
-    session, _ := Store.Get(r, "npk-cookie")
+    session, err := Store.Get(r, "npk-cookie")
+    if err != nil {
+        log.Printf("Unable to get session: %v", err)
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+    }
     if _, ok := session.Values["user"]; ok {
         delete(session.Values, "user")
     }
     //session.Values["user"] = nil
     if err := session.Save(r, w); err != nil {
         log.Printf("Session not saved: %v", err)
+        http.Error(w, err.Error(), http.StatusInternalServerError)
     }
     http.Redirect(w, r, "/login", 301)
 }

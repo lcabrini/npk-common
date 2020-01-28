@@ -78,7 +78,11 @@ var loginForm = `
 `
 
 func login(w http.ResponseWriter, r *http.Request) {
-    session, _ := Store.Get(r, "npk-cookie")
+    session, err := Store.Get(r, "npk-cookie")
+    if err != nil {
+        log.Printf("Unable to read session: %v", err)
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+    }
 
     switch r.Method {
     case "GET":
@@ -100,6 +104,7 @@ func login(w http.ResponseWriter, r *http.Request) {
             err := session.Save(r, w)
             if err != nil {
                 log.Printf("Session not saved: %v", err)
+                http.Error(w, err.Error(), http.StatusInternalServerError)
             }
             http.Redirect(w, r, "/", 301)
             //fmt.Fprintf(w, "success")

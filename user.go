@@ -126,6 +126,7 @@ func logout(w http.ResponseWriter, r *http.Request) {
     if _, ok := session.Values["user"]; ok {
         delete(session.Values, "user")
     }
+    session.Options.MaxAge = -1
     //session.Values["user"] = nil
     if err := session.Save(r, w); err != nil {
         log.Printf("Session not saved: %v", err)

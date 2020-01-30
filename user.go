@@ -35,12 +35,8 @@ func UserIdByUsername(un string) uuid.UUID {
 var loginForm = `
 {{template "base" .}}
 
-<div class="hero">
-{{$message := .message}}
-<h1>{{$message}}</h1>
-</div>
-
 {{define "main"}}
+<h1>{{.}}</h1>
 <section class="hero is-fullheight is-light is-bold">
   <div class="hero-body">
     <div class="container">
@@ -100,10 +96,10 @@ func login(w http.ResponseWriter, r *http.Request) {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
             }
             log.Printf("Flash messages: %v", flashes)
-            varmap := map[string]interface{} {
+            /*varmap := map[string]interface{} {
                 "message": flashes[0],
-            }
-            t.ExecuteTemplate(w, "loginForm", varmap)
+            }*/
+            t.ExecuteTemplate(w, "loginForm", flashes[0])
         } else {
             t.ExecuteTemplate(w, "loginForm", nil)
         }

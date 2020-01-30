@@ -94,6 +94,7 @@ func login(w http.ResponseWriter, r *http.Request) {
     case "GET":
         t, _ := template.New("base").Parse(BaseTemplate)
         t.New("loginForm").Parse(loginForm)
+        log.Printf("Flash messages: %v", session.Flashes())
         t.ExecuteTemplate(w, "loginForm", session.Flashes())
 
     case "POST":

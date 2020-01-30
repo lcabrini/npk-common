@@ -109,6 +109,7 @@ func login(w http.ResponseWriter, r *http.Request) {
             http.Redirect(w, r, "/", 301)
             //fmt.Fprintf(w, "success")
         } else {
+            session.AddFlash("Authentication failed.")
             http.Redirect(w, r, "/login", http.StatusFound)
         }
 

@@ -99,11 +99,11 @@ func login(w http.ResponseWriter, r *http.Request) {
             if err != nil {
                 log.Printf("Session not saved: %v", err)
                 http.Error(w, err.Error(), http.StatusInternalServerError)
-                log.Printf("Flash messages: %v", flashes)
-                t.ExecuteTemplate(w, "loginForm", flashes)
-            } else {
-                t.ExecuteTemplate(w, "loginForm", nil)
             }
+            log.Printf("Flash messages: %v", flashes)
+            t.ExecuteTemplate(w, "loginForm", flashes)
+        } else {
+            t.ExecuteTemplate(w, "loginForm", nil)
         }
 
     case "POST":

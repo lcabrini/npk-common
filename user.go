@@ -35,9 +35,7 @@ func UserIdByUsername(un string) uuid.UUID {
 var loginForm = `
 {{template "base" .}}
 
-{{range .}}
 <h1>{{.}}</h1>
-{{end}}
 
 {{define "main"}}
 <section class="hero is-fullheight is-light is-bold">

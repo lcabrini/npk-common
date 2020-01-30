@@ -11,4 +11,5 @@ type DatabaseConfig struct {
 
 type Configuration struct {
     Database DatabaseConfig
+    SessionKey string
 }

@@ -97,7 +97,11 @@ func login(w http.ResponseWriter, r *http.Request) {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
             }
             log.Printf("Flash messages: %v", flashes)
-            t.ExecuteTemplate(w, "loginForm", flashes)
+            varmap := map[string]interface{} {
+                "message": flashes[0],
+
+            }
+            t.ExecuteTemplate(w, "loginForm", varmap)
         } else {
             t.ExecuteTemplate(w, "loginForm", nil)
         }

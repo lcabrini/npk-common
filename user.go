@@ -36,7 +36,6 @@ var loginForm = `
 {{template "base" .}}
 
 {{define "main"}}
-<h1>{{.}}</h1>
 <section class="hero is-fullheight is-light is-bold">
   <div class="hero-body">
     <div class="container">
@@ -44,6 +43,11 @@ var loginForm = `
         <article class="card is-rounded">
           <div class="card-content">
             <h1 class="title has-text-centered">Login</h1>
+            {{if . }}
+            <div class="notification is-warning">
+                {{.}}
+            </div>
+            {{end}}
             <form method="post">
               <div class="field">
                 <p class="control has-icon has-icons-left">

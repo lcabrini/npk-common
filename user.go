@@ -116,6 +116,11 @@ func login(w http.ResponseWriter, r *http.Request) {
             //fmt.Fprintf(w, "success")
         } else {
             session.AddFlash("Authentication failed.")
+            err = session.Save(r, w)
+            if err != nil {
+                log.Printf("Session not saved: %v", err)
+                http.Error(w, err.Error(), http.StatusInternalServerError)
+            }
             http.Redirect(w, r, "/login", http.StatusFound)
         }
 

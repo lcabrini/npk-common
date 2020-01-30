@@ -3,6 +3,7 @@ package npk
 import (
     "net/http"
     "github.com/gorilla/mux"
+    //"github.com/gorilla/sessions"
 )
 
 func DisableCache(next http.HandlerFunc) http.HandlerFunc {
@@ -14,8 +15,28 @@ func DisableCache(next http.HandlerFunc) http.HandlerFunc {
     }
 }
 
+func Authenticated(next http.HandlerFunc) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        session, err := Store.Get(r, "npk-cookie")
+        if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+        }
+        uid := session.Values["user"]
+        if uid == nil {
+            session.AddFlash("Authentication required.")
+            err = session.Save(r, w)
+            if err != nil {
+                http.Error(w, err.Error(), http.StatusInternalServerError)
+            }
+            http.Redirect(w, r, "/login", http.StatusFound)
+        }
+
+        next(w, r)
+    }
+}
+
 func SetupRoutes(r *mux.Router) {
-    r.HandleFunc("/", DisableCache(dashboard))
+    r.HandleFunc("/", DisableCache(Authenticated(dashboard)))
     r.HandleFunc("/login", DisableCache(login))
-    r.HandleFunc("/logout", DisableCache(logout))
+    r.HandleFunc("/logout", DisableCache(Authenticated(logout)))
 }

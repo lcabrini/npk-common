@@ -94,8 +94,17 @@ func login(w http.ResponseWriter, r *http.Request) {
     case "GET":
         t, _ := template.New("base").Parse(BaseTemplate)
         t.New("loginForm").Parse(loginForm)
-        log.Printf("Flash messages: %v", session.Flashes())
-        t.ExecuteTemplate(w, "loginForm", session.Flashes())
+        if flashes := session.Flashes(); len(flashes) > 0 {
+            err = session.Save(r, w)
+            if err != nil {
+                log.Printf("Session not saved: %v", err)
+                http.Error(w, err.Error(), http.StatusInternalServerError)
+                log.Printf("Flash messages: %v", flashes)
+                t.ExecuteTemplate(w, "loginForm", flashes)
+            } else {
+                t.ExecuteTemplate(w, "loginForm", nil)
+            }
+        }
 
     case "POST":
         if err := r.ParseForm(); err != nil {

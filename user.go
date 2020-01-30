@@ -35,10 +35,8 @@ func UserIdByUsername(un string) uuid.UUID {
 var loginForm = `
 {{template "base" .}}
 
-{{$flashes = .}}
-
-{{if $flashes}}
-<h1>{{$flashes}}</h1>
+{{range .}}
+<h1>{{.}}</h1>
 {{end}}
 
 {{define "main"}}

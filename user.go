@@ -35,6 +35,12 @@ func UserIdByUsername(un string) uuid.UUID {
 var loginForm = `
 {{template "base" .}}
 
+{{$flashes = .}}
+
+{{if $flashes}}
+<h1>{{$flashes}}</h1>
+{{end}}
+
 {{define "main"}}
 <section class="hero is-fullheight is-light is-bold">
   <div class="hero-body">
@@ -88,7 +94,7 @@ func login(w http.ResponseWriter, r *http.Request) {
     case "GET":
         t, _ := template.New("base").Parse(BaseTemplate)
         t.New("loginForm").Parse(loginForm)
-        t.ExecuteTemplate(w, "loginForm", nil)
+        t.ExecuteTemplate(w, "loginForm", session.Flashes())
 
     case "POST":
         if err := r.ParseForm(); err != nil {
@@ -109,6 +115,7 @@ func login(w http.ResponseWriter, r *http.Request) {
             http.Redirect(w, r, "/", 301)
             //fmt.Fprintf(w, "success")
         } else {
+            session.AddFlash("Authentication failed.")
             http.Redirect(w, r, "/login", http.StatusFound)
         }
 

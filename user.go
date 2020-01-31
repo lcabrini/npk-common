@@ -109,6 +109,8 @@ func login(w http.ResponseWriter, r *http.Request) {
         }
 
     case "POST":
+        var auth bool
+
         if err := r.ParseForm(); err != nil {
             log.Print("Failed to parse login form: %v", err)
             return
@@ -116,7 +118,13 @@ func login(w http.ResponseWriter, r *http.Request) {
         un := r.FormValue("username")
         pw := r.FormValue("password")
         log.Printf("Username: %s, Password: %s", un, pw)
-        if authenticate(un, pw) {
+        auth, err = authenticate(un, pw)
+        if err != nil {
+            log.Printf("database: %v", err)
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+        }
+
+        if auth {
             uid := UserIdByUsername(un)
             session.Values["user"] = uid
             err := session.Save(r, w)
@@ -162,7 +170,7 @@ func logout(w http.ResponseWriter, r *http.Request) {
     http.Redirect(w, r, "/login", http.StatusFound)
 }
 
-func authenticate(un string, pw string) bool {
+func authenticate(un string, pw string) (bool, error) {
     var count int
 
     sql := `
@@ -173,11 +181,11 @@ func authenticate(un string, pw string) bool {
 
     rows, err := db.Query(sql, un, pw)
     if err != nil {
-        panic(err)
+        return false, err
     }
     defer rows.Close()
     rows.Next()
     rows.Scan(&count)
     log.Printf("User count: %d", count)
-    return count == 1
+    return count == 1, nil
 }

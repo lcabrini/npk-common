@@ -8,7 +8,7 @@ import (
 
 var db *sql.DB
 
-func DBConnection(config Configuration) *sql.DB {
+func DBConnection(config Configuration) (*sql.DB, error) {
     if db == nil {
         var err error
 
@@ -23,9 +23,9 @@ func DBConnection(config Configuration) *sql.DB {
 
         db, err = sql.Open("postgres", info)
         if err != nil {
-            panic(err)
+            return nil, err
         }
     }
 
-    return db
+    return db, nil
 }

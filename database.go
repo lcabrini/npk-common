@@ -2,7 +2,6 @@ package npk
 
 import (
     "fmt"
-    "errors"
     "database/sql"
     _ "github.com/lib/pq"
 )

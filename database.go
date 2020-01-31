@@ -24,7 +24,7 @@ func DBConnection(config Configuration) (*sql.DB, error) {
 
         db, err = sql.Open("postgres", info)
         if err != nil {
-            return nil, errors.New("unable to connect to postgres")
+            return nil, err
         }
     }
 

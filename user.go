@@ -122,6 +122,7 @@ func login(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             log.Printf("database: %v", err)
             http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
         }
 
         if auth {

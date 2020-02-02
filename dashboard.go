@@ -9,9 +9,9 @@ import (
 )
 
 var DashboardTpl = `
-{{template "main" .}}
+{{template "base" .}}
 
-{{define ""}}
+{{define "main"}}
 <p>User: {{.}}</p>
 {{end}}
 `

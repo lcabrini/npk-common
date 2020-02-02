@@ -13,6 +13,7 @@ var BaseTemplate = `
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
+{{template "navbar" .}}
 <main>
 {{template "main" .}}
 </main>

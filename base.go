@@ -13,10 +13,23 @@ var BaseTemplate = `
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
+{{template "navbar" .}}
 <main>
 {{template "main" .}}
 </main>
 </body>
 </html>
+{{end}}
+`
+
+var Navbar = `
+{{define "navbar"}}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      Napkoaco
+    </a>
+  </div>
+</nav>
 {{end}}
 `

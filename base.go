@@ -32,3 +32,4 @@ var Navbar = `
   </div>
 </nav>
 {{end}}
+`

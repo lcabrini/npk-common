@@ -21,3 +21,14 @@ var BaseTemplate = `
 </html>
 {{end}}
 `
+
+var Navbar = `
+{{define "navbar"}}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      Napkoaco
+    </a>
+  </div>
+</nav>
+{{end}}

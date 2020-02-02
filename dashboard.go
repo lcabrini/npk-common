@@ -8,7 +8,7 @@ import (
     // "github.com/google/uuid"
 )
 
-var Navbar = `
+var DashboardTpl = `
 {{template "main" .}}
 
 {{define ""}}
@@ -24,7 +24,7 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
     }
 
     uid := session.Values["user"]
-    t, _ := template.New("base").Parse("base").Parse(BaseTemplate)
+    t, _ := template.New("base").Parse(BaseTemplate)
     t.New("navbar").Parse(Navbar)
     t.New("dashboard").Parse(DashboardTpl)
     t.ExecuteTemplate(w, "dashboard", uid)

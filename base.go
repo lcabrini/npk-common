@@ -30,6 +30,12 @@ var Navbar = `
       Napkoaco
     </a>
   </div>
+
+  <div class="navbar-end">
+    <a class="navbar-item" href="/logout">
+      Logout
+    </a>
+  </div>
 </nav>
 {{end}}
 `

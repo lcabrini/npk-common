@@ -3,6 +3,7 @@ package npk
 import (
     //"fmt"
     "log"
+    "time"
     "github.com/google/uuid"
     "net/http"
     "html/template"
@@ -12,6 +13,8 @@ type User struct {
     Id       uuid.UUID
     Username string
     Password string
+    CreatedAt time.Time
+    Status string
 }
 
 func UserIdByUsername(un string) uuid.UUID {

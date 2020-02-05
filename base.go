@@ -14,9 +14,11 @@ var BaseTemplate = `
 </head>
 <body>
 {{template "navbar" .}}
+{{template "toolbar" .}}
 <main>
 {{template "main" .}}
 </main>
+{{template "toolbar" .}}
 </body>
 </html>
 {{end}}

@@ -11,6 +11,8 @@ import (
 var DashboardTpl = `
 {{template "base" .}}
 
+{{define "toolbar"}}{{end}}
+
 {{define "main"}}
 <p>User: {{.}}</p>
 {{end}}

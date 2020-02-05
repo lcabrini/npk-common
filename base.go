@@ -34,9 +34,11 @@ var Navbar = `
   </div>
 
   <div class="navbar-end">
-    <a class="navbar-item" href="/logout">
-      Logout
-    </a>
+    <div class="navbar-item">
+      <a class="button is-danger" href="/logout">
+        Logout
+      </a>
+    </div>
   </div>
 </nav>
 {{end}}

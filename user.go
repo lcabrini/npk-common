@@ -39,6 +39,7 @@ var loginForm = `
 {{template "base" .}}
 
 {{define "navbar"}}{{end}}
+{{define "toolbar"}}{{end}}
 
 {{define "main"}}
 <section class="hero is-fullheight is-light is-bold">

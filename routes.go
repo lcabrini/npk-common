@@ -1,6 +1,7 @@
 package npk
 
 import (
+    "fmt"
     "net/http"
     "github.com/gorilla/mux"
     //"github.com/gorilla/sessions"
@@ -39,4 +40,11 @@ func SetupRoutes(r *mux.Router) {
     r.HandleFunc("/", DisableCache(Authenticated(dashboard)))
     r.HandleFunc("/login", DisableCache(login))
     r.HandleFunc("/logout", DisableCache(Authenticated(logout)))
+
+    r.HandleFunc("/bulma", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, Bulma)
+    })
+    r.HandleFunc("/fa", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, FontAwesome)
+    })
 }

@@ -43,11 +43,3 @@ var Navbar = `
 </nav>
 {{end}}
 `
-
-var Bulma = `
-__BULMA__
-`
-
-var FontAwesome = `
-__FA__
-`

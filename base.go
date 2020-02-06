@@ -9,8 +9,8 @@ var BaseTemplate = `
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Napkoaco</title>
-<link rel="stylesheet" href="/bulma">
-<script defer src="/fa"></script>
+<link rel="stylesheet" href="/static/bulma/css/bulma.min.css">
+<script defer src="/static/fontawesome/js/all.min.js"></script>
 </head>
 <body>
 {{template "navbar" .}}

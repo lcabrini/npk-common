@@ -1,7 +1,6 @@
 package npk
 
 import (
-    "fmt"
     "net/http"
     "github.com/gorilla/mux"
     //"github.com/gorilla/sessions"
@@ -41,4 +40,7 @@ func SetupRoutes(r *mux.Router) {
     r.HandleFunc("/login", DisableCache(login))
     r.HandleFunc("/logout", DisableCache(Authenticated(logout)))
 
+    r.PathPrefix("/static/").
+        Handler(http.StripPrefix("/static/",
+            http.FileServer(http.Dir("/usr/local/npk/static/"))))
 }

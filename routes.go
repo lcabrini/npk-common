@@ -41,14 +41,4 @@ func SetupRoutes(r *mux.Router) {
     r.HandleFunc("/login", DisableCache(login))
     r.HandleFunc("/logout", DisableCache(Authenticated(logout)))
 
-    r.HandleFunc("/bulma", func(w http.ResponseWriter, r *http.Request) {
-        h := w.Header()
-        h.Set("Content-Type", "text/css")
-        fmt.Fprintf(w, Bulma)
-    })
-    r.HandleFunc("/fa", func(w http.ResponseWriter, r *http.Request) {
-        h := w.Header()
-        h.Set("Content-Type", "application/javascript")
-        fmt.Fprintf(w, FontAwesome)
-    })
 }

@@ -21,7 +21,7 @@ create table users(
     created_at timestamp not null default current_timestamp,
     status user_status not null default 'new',
     primary key(id),
-    unique(password)
+    unique(username)
 );
 
 insert into users(id, username, password) values(
